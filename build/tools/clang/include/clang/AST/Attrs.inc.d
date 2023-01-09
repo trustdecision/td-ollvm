@@ -1,1 +1,0 @@
-tools/clang/include/clang/AST/Attrs.inc: /Users/zhanbincheng/Downloads/llvm3/clang/include/clang/Basic/ASTNode.td /Users/zhanbincheng/Downloads/llvm3/clang/include/clang/Basic/AttrDocs.td /Users/zhanbincheng/Downloads/llvm3/clang/include/clang/Basic/DeclNodes.td /Users/zhanbincheng/Downloads/llvm3/clang/include/clang/Basic/StmtNodes.td
