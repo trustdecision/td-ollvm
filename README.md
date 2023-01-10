@@ -47,13 +47,40 @@ $ ninja install-xcode-toolchain
 ```
 
 ### Usage
-If you want to use toolchains for Xcode, please make the following configuration in Xcode :
-```cmake
-Xcode -> Toolchains -> org.llvm.14.0.6
-```
+#### Xcode IDE
+
+##### Config Toolchains
+
+Make the following configuration in Xcode :
+> Xcode -> Toolchains -> org.llvm.14.0.6
+
+Make the following configuration to No in project settings : 
+
+> Targets -> Build Settings -> Build Options -> Enable Index-While-Building Functionality 
+
+##### Obfuscation
+
++ Open project and find the following path :
+
+>  TARGETS -> Build Settings -> Apple Clang - Custom Compiler Flags -> Other C Flags
+
++ Add confusion parameters to Other C Flags
++ The simplest way to use td-ollvm, is to pass a flag to the LLVM backend from Clang. The current available flags are :
+1. `-fla` for the control flow flattening pass, 
+   - `-mllvm -fla`: activates control flow flattening
+   - `-mllvm -split`: activates basic block splitting. Improve the flattening when applied together.
+   - `-mllvm -split_num=3`: if the pass is activated, applies it 3 times on each basic block. Default: 1
+2. `-sub` for the instruction substitution pass, 
+   - `-mllvm -sub`: activate instructions substitution
+   - `-mllvm -sub_loop=3`: if the pass is activated, applies it 3 times on a function. Default : 1.
+3. `-bcf` for the bogus control flow pass,
+   - `-mllvm -bcf`: activates the bogus control flow pass
+   - `-mllvm -bcf_loop=3`: if the pass is activated, applies it 3 times on a function. Default: 1
+   - `-mllvm -bcf_prob=40`: if the pass is activated, a basic bloc will be obfuscated with a probability of 40%. Default: 30
+
 ## Issues
 
-Please use GitHub [Issues](https://github.com/trustdecision/td-ollvm/issues) to submit bugs or Discussions to ask questions.
+Please use [Issues](https://github.com/trustdecision/td-ollvm/issues) to submit bugs to ask questions.
 
 ## License
 This library is MIT licensed. Copyright trustdecision, Inc. 2022
